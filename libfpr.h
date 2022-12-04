@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_test.c                                      :+:      :+:    :+:   */
+/*   libfpr.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 14:04:45 by djacobs           #+#    #+#             */
-/*   Updated: 2022/12/03 12:01:11 by djacobs          ###   ########.fr       */
+/*   Created: 2022/12/04 12:58:44 by djacobs           #+#    #+#             */
+/*   Updated: 2022/12/04 15:16:05 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//# include "libft.h"
-# include <stdio.h>
+#ifndef	LIBFPR_H
+# define LIBFPR_H
 
-#define SPA " "
+# include <stdarg.h>
+# include "libft.h"
 
-int	main(int argc, char **argv)
-{
-	char	*str;
+# define FD 1 
 
-	str = "there";
-	printf ("hello %s", str);
-	putchar ('\n');
-	return (0);
-}
+int	ft_prcspec( va_list _valist, char *fstr);
+int	ft_prsspec( va_list _valist, char *fstr);
+
+
+#endif

@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_test.c                                      :+:      :+:    :+:   */
+/*   ft_prsspec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 14:04:45 by djacobs           #+#    #+#             */
-/*   Updated: 2022/12/03 12:01:11 by djacobs          ###   ########.fr       */
+/*   Created: 2022/12/04 14:33:37 by djacobs           #+#    #+#             */
+/*   Updated: 2022/12/04 14:56:08 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//# include "libft.h"
-# include <stdio.h>
+# include "libfpr.h"
 
-#define SPA " "
-
-int	main(int argc, char **argv)
+int	ft_prsspec(va_list _valist, char *fstr)
 {
-	char	*str;
+	int	length;
 
-	str = "there";
-	printf ("hello %s", str);
-	putchar ('\n');
+	fstr = (char *)va_arg( _valist, char *);
+	if (*fstr)
+	{	
+		ft_pustr_fd( fstr, 1);
+		length = ft_strlen( fstr, 1);
+		return (length);
+	}
 	return (0);
 }

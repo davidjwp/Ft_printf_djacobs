@@ -6,81 +6,67 @@
 /*   By: djacobs <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 11:25:39 by djacobs           #+#    #+#             */
-/*   Updated: 2022/12/02 18:53:28 by djacobs          ###   ########.fr       */
+/*   Updated: 2022/12/04 18:37:12 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stdarg.h>
-# include "libfp.h"
+#include "libfpr.h"
 
-void  ft_putchar_fd(char c, int fd)
+int	ft_switch_spec(va_list _valist, char *fstr)
 {
-  write (fd, &c, 1);
-}
-
-void  ft_putstr_fd(char *s, int fd)
-{
-  while (s++)
-    ft_putchar_fd( *s, fd);
-}
-
-void	ft_cspd_spec(va_list _valist, char spec)
-{
-	switch (&spec)
+	switch (*fstr)
 	{
 		case 'c':
-			ft_putchar_fd((char)va_arg( _valist, const char *), 1);
-			break;
+			return (ft_prcspec( _valist, fstr));
 		case 's':
-			ft_putstr_fd((char *)va_arg( _valist, const char *), 1);
-			break;
+			return (ft_prsspec( _valist, fstr));
 		case 'p':
-
-		case 'd':
+			return (ft_prpspec( _valist, fstr));
+		case 'd';
+			//return (ft_prdspec( _valist, fstr));
+		case 'i':
+			//return (ft_prispec( _valist, fstr));
+		case 'u':
+			
+		case 'x':
+			
+		case 'X':
+		case '%':
+			ft_putchar_fd( '%', 1);
+			return (1);		
 	}
+	return (0);	
 }
 
-void	ft_iuxX_spec(va_list _valist, char spec)
+int	ft_printf(const char *format, ...)
 {
-	switch (&spec)
-	{
-		case 'i';
-		case 'u';
-		case 'x';
-		case 'x';
-	}
-}
+	char	*fstr;
+	va_list	_valist;
+	int	length;
 
-int ft_printf(const char *format,...)
-{
-	va_list _valist;
-	char  *vastr;
-
-	vastr = (char *)format;
+	length = 0;
+	fstr = (char *)format;
 	va_start( _valist, format);
-	while (*vastr)
+	if (!format)
+		return (length);
+	while (*fstr)
 	{
-		if (*vastr == '%')
+		if ('%' == *fstr)
 		{
-			if (*vastr + 1 == ('c' || 's' || 'p' || 'd'))
-				ft_cspd_spec( _valist, vastr);
-			else if (*vastr + 1 == ('i' || 'u' || 'x' || 'X'))
-				ft_iuxX_spec( _valist, vastr);
-			else if (*vastr + 1 == '%')
-				ft_putchar_fd( '%', fd);
-			vastr + 2;
+			length += ft_switch_spec( _valist, fst += 1);
+			va_arg( _valist, char *);
+			fstr++;
 		}
-		ft_putchar_fd( *vastr, fd);
-		vastr++;
+		ft_putchar_fd( *fstr, 1);
+		fstr++;
+		length++;
 	}
-	return (0);
+	va_end(_valist);
+	return (length);
 }
 
-int main() 
+int	main(int argc, char **argv)
 {
-	char  c;
-	c = 'c';
-	ft_printf("here is a char :%c",c);
-	"cspdiuxX%"
-	return 0;
-}
+	ft_printf ("here is a number : %i");
+	return (0);
+}      
