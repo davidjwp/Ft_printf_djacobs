@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_test.c                                      :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 14:04:45 by djacobs           #+#    #+#             */
-/*   Updated: 2022/12/06 13:20:07 by djacobs          ###   ########.fr       */
+/*   Created: 2022/11/08 16:56:45 by djacobs           #+#    #+#             */
+/*   Updated: 2022/11/30 19:18:43 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//# include "libft.h"
-# include <stdio.h>
+# include "ft_printf.h"
 
-#define SPA " "
-
-int	main(void)
+size_t	ft_strlen(const char *s)
 {
-	int	i = -00123;
-	long long int value = i;
+	unsigned int	lenght;
 
-	printf ("%i", i);
-	printf ("\n%d", i);
-/*for (int i = 0; i < 10; i++)
-	printf("\n\n\033[0;36;42m \n");
-printf("\033[0;m");
-*/
-	return (0);
+	lenght = 0;
+	while (s[lenght])
+		lenght++;
+	return (lenght);
 }

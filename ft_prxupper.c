@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prXspec.c                                       :+:      :+:    :+:   */
+/*   ft_prxupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libfpr.h"
+# include "ft_printf.h"
 
-unsigned int    ft_prxspec(va_list _valist)
+unsigned int    ft_prxupper(va_list _valist)
 {
-    type_def the_;
+    t_def the_;
 
     the_.sign_check = (int)va_arg( _valist, int);
-    the_.upper++;
-    the_.length = convert_to_hex_type( the_.sign_check, the_.type);
+    the_.upper = 1;
+    the_.length = convert_to_hex_type( the_.sign_check, the_);
     return (the_.length);
 }

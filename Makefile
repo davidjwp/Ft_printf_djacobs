@@ -6,13 +6,16 @@
 #    By: djacobs <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/16 12:34:33 by djacobs           #+#    #+#              #
-#    Updated: 2022/12/07 15:21:57 by djacobs          ###   ########.fr        #
+#    Updated: 2022/12/06 11:49:11 by djacobs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-TEST_SRCS		= $(shell TESTS/*.c)
+NAME 		= libftprintf.a
+SRCS		= ft_printf.c ft_prpspec.c ft_prsspec.c ft_prxmin.c ft_prxupper.c \
+				convert_to_hex_type.c ft_calloc.c ft_strlen.c ft_prdspec.c
 
-OBJS			= $(SRCS:.c=.o)
+OBJS		= $(SRCS:.c=.o)
+
 CC		= gcc
 CFLAGS		= -Wall -Wextra -Werror
 
@@ -22,7 +25,7 @@ CFLAGS		= -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $@ $(OBJS)
+	ar rc $@ $(OBJS) && ranlib $@
 
 clean:
 	rm -f $(OBJS)
@@ -31,7 +34,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-tests:
-	$(CC) $(CFLAGS) $(TEST_SRCS) -o $@ && ./$@
-	clean

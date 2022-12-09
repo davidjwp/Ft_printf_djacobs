@@ -10,17 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libfpr.h"
+# include "ft_printf.h"
 
-int	ft_prsspec(va_list _valist, char *fstr)
+int	ft_prsspec(va_list _valist)
 {
 	int	length;
+	char *fstr;
 
 	fstr = (char *)va_arg( _valist, char *);
 	if (*fstr)
-	{	
-		ft_pustr_fd( fstr, 1);
-		length = ft_strlen( fstr, 1);
+	{
+		length = ft_strlen( fstr);
+		write (1, fstr, length + 1);
 		return (length);
 	}
 	return (0);

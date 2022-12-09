@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prxspec.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 13:28:16 by djacobs           #+#    #+#             */
-/*   Updated: 2022/12/08 13:28:20 by djacobs          ###   ########.fr       */
+/*   Created: 2022/11/14 18:23:59 by djacobs           #+#    #+#             */
+/*   Updated: 2022/11/30 14:07:50 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libfpr.h"
+# include "ft_printf.h"
 
-unsigned int    ft_prxspec(va_list _valist)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-    type_def the_;
+	char	*ptr;
+	size_t	ptr_size;
 
-    the_.sign_check = (int)va_arg( _valist, int);
-    the_.length = convert_to_hex_type( the_.sign_check, the_.type);
-    return (the_.length);
+	ptr_size = (int)(nmemb * size);
+	if (size != 0 && nmemb != (size_t)ptr_size / size)
+		return (NULL);
+	ptr = malloc(nmemb * size);
+	if (!ptr)
+		return (NULL);
+	while (ptr_size--)
+		ptr[ptr_size] = 0;
+	return (ptr);
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "stdlpr.h"
+# include "ft_printf.h"
 
 static int	value_length(unsigned int value)
 {
@@ -27,15 +27,15 @@ static int	value_length(unsigned int value)
 	return (length);
 }
 
-unsigned int	convert_to_hex_type(unsigned int value, type_def the_)
+unsigned int	convert_to_hex_type(unsigned int value, t_def the_)
 {
 	unsigned int	length;
 	char			*hex_arr;
 	
 	if (the_.sign_check < 0)
-		length = value_length( value / 10, the_.type);
+		length = value_length( value / 10);
 	else
-		length = value_length( value, the_.type);
+		length = value_length( value);
 	hex_arr = (char *)ft_calloc( length, sizeof(char));
 	if (!hex_arr)
 		return (free(hex_arr), 0);

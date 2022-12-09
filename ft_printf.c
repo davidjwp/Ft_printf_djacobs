@@ -10,63 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libfpr.h"
-
-static int	ft_prcspec(va_list _valist)
-{
-	ft_putchar_fd((char)v_arg(_valist, char), 1);
-	return (1);
-}
-
-static int	ft_prsspec(va_list _valist, char *fstr)
-{
-	int	length;
-
-	fstr = (char *)va_arg(_valist, char *);
-	if (*fstr)
-	{	
-		length = ft_strlen(fstr, 1);
-		write (1, fstr, length + 1);
-		return (length);
-	}
-	return (0);
-}
-
-static int	ft_prdspec(va_list _valist,char *fstr)
-{
-	int	value;
-	int	length;
-
-	length = 0;
-	if (*fstr == 'u')
-		value = (unsigned int)va_arg(_valist, unsigned int);
-	else
-		value = va_arg(_valist, int);
-	write (value);
-	while (value)
-	{
-		vale /= 10;
-		length ++;
-	}
-	return (length);
-}
+# include "libprint.h"
+# include <stdarg.h>
 
 static int	ft_ifspec(va_list _valist, char *fstr)
 {
 	if (*fstr == 'c')
-		return (ft_prcspec( _valist));
-	if else (*fstr == 's')
+		return (write (1, va_arg(_valist, char*), 1), 1);
+	else if(*fstr == 's')
 		return (ft_prsspec( _valist));
-	if else(*fstr == 'p')
+	else if(*fstr == 'p')
 		return (ft_prpspec( _valist));
-	if else(*fstr == 'd' || *fstr == 'i' || *fstr = 'u')
-		return (ft_prdspec( _valist, fstr));
-	if else(*fstr == 'x')
-		return (ft_prxspec( _valist));
-	if else(*fstr == 'X')
-		return (ft_prXspec( _valist));
-	if else (*fstr == '%')
-		return (write (1, '%', 1), 1);
+	else if(*fstr == 'd' || *fstr == 'i')
+		return (ft_prdspec(va_arg(_valist, long int)));
+	else if(*fstr == 'u')
+		return (ft_prdspec(va_arg(_valist, unsigned int)));
+	else if(*fstr == 'x')
+		return (ft_prxmin( _valist));
+	else if(*fstr == 'X')
+		return (ft_prxupper( _valist));
+	else if(*fstr == '%')
+		return (write (1, "%", 1), 1);
 	return (0);		
 }
 

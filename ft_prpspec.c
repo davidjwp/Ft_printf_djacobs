@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libfpr.h"
+# include "ft_printf.h"
 
 unsigned int    ft_prpspec(va_list _valist)
 {
-    type_def the_;
+    t_def the_;
 
     the_.sign_check = (int)va_arg( _valist, int);
-    the_.type++;
-    the_.length = convert_to_hex_type( the_.sign_check, the_.type);
+    the_.type = 1;
+    the_.length = convert_to_hex_type( the_.sign_check, the_);
     return (the_.length);
 }

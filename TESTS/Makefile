@@ -10,28 +10,33 @@
 #                                                                              #
 # **************************************************************************** #
 
-TEST_SRCS		= $(shell TESTS/*.c)
+################# VARIABLES
+### SRCS and OBJS
 
-OBJS			= $(SRCS:.c=.o)
-CC		= gcc
-CFLAGS		= -Wall -Wextra -Werror
+NAME		= tests
+TEST_SRC	= c_tests.c 
+SRCS		= $(wildcard ../*.c)
+OBJS		= $(SRCS:.c=.o)
+H_FILE		= $(wildcard ../*.h)
 
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+### COMP 
+
+CC			= cc
+CFLAGS		= -Wall -Werror -Wextra
+
+################# RULES
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rc $@ $(OBJS)
-
+$(NAME):  $(H_FILES) $(OBJS)
+	$(CC) $(CFLAGS) $(H_FILE) $(OBJS) $(TEST_SRC) -o $@ && ./$@
+ 
 clean:
-	rm -f $(OBJS)
+	rm -f $(NAME)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f ../*.o
 
 re: fclean all
 
-tests:
-	$(CC) $(CFLAGS) $(TEST_SRCS) -o $@ && ./$@
-	clean
+.PHONY: all clean fclean re
