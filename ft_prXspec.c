@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_test.c                                      :+:      :+:    :+:   */
+/*   ft_prXspec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/02 14:04:45 by djacobs           #+#    #+#             */
-/*   Updated: 2022/12/06 13:20:07 by djacobs          ###   ########.fr       */
+/*   Created: 2022/12/08 13:52:57 by djacobs           #+#    #+#             */
+/*   Updated: 2022/12/08 13:52:59 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//# include "libft.h"
-# include <stdio.h>
+# include "libfpr.h"
 
-#define SPA " "
-
-int	main(void)
+unsigned int    ft_prxspec(va_list _valist)
 {
-	int	i = -00123;
-	long long int value = i;
+    type_def the_;
 
-	printf ("%i", i);
-	printf ("\n%d", i);
-/*for (int i = 0; i < 10; i++)
-	printf("\n\n\033[0;36;42m \n");
-printf("\033[0;m");
-*/
-	return (0);
+    the_.sign_check = (int)va_arg( _valist, int);
+    the_.upper++;
+    the_.length = convert_to_hex_type( the_.sign_check, the_.type);
+    return (the_.length);
 }
