@@ -14,7 +14,7 @@
 ### SRCS and OBJS
 
 NAME		= tests
-TEST_SRC	= c_tests.c 
+TEST_SRC	= c_tests/c_test.c 
 SRCS		= $(wildcard ../*.c)
 OBJS		= $(SRCS:.c=.o)
 H_FILE		= $(wildcard ../*.h)
@@ -30,7 +30,7 @@ all: $(NAME)
 
 $(NAME):  $(H_FILES) $(OBJS)
 	$(CC) $(CFLAGS) $(H_FILE) $(OBJS) $(TEST_SRC) -o $@ && ./$@
- 
+	
 clean:
 	rm -f $(NAME)
 

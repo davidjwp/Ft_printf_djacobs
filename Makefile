@@ -27,6 +27,9 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rc $@ $(OBJS) && ranlib $@
 
+test:
+	$(CC) $(CFLAGS) test.c $(NAME) && ./a.out
+
 clean:
 	rm -f $(OBJS)
 
@@ -34,3 +37,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: clean fclean test all 

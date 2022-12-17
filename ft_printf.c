@@ -10,13 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libprint.h"
+# include "ft_printf.h"
 # include <stdarg.h>
+
+static int ft_prcspec(va_list _valist)
+{
+    char    c;
+
+    c = va_arg(_valist, int);
+    write (1, &c,1);
+    return (1);
+}
 
 static int	ft_ifspec(va_list _valist, char *fstr)
 {
 	if (*fstr == 'c')
-		return (write (1, va_arg(_valist, char*), 1), 1);
+		return (ft_prcspec( _valist));
 	else if(*fstr == 's')
 		return (ft_prsspec( _valist));
 	else if(*fstr == 'p')
@@ -45,15 +54,17 @@ int	ft_printf(const char *format, ...)
 	va_start( _valist, format);
 	while (*fstr)
 	{
-		if ('%' == *fstr)
+		if (*fstr == '%')
 		{
-			length += ft_ifspec( _valist, fstr += 1);
-			va_arg( _valist, char *);
+			length += ft_ifspec( _valist, ++fstr);
 			fstr++;
 		}
-		write( 1, fstr, 1);
-		fstr++;
-		length++;
+		if (*fstr && *fstr != '%')
+		{
+			write( 1, fstr, 1);
+			length++;
+			fstr++;
+		}
 	}
 	return (va_end(_valist), length);
 }
