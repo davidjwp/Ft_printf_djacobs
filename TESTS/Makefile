@@ -13,11 +13,12 @@
 ################# VARIABLES
 ### SRCS and OBJS
 
-NAME		= tests
+NAME		= test
+SCRIPTS		= c_tests/compc.sh 
 TEST_SRC	= c_tests/c_test.c 
 SRCS		= $(wildcard ../*.c)
 OBJS		= $(SRCS:.c=.o)
-H_FILE		= $(wildcard ../*.h)
+A_FILE		= $(wildcard ../*.a)
 
 ### COMP 
 
@@ -26,10 +27,13 @@ CFLAGS		= -Wall -Werror -Wextra
 
 ################# RULES
 
-all: $(NAME)
+all: scripts
 
-$(NAME):  $(H_FILES) $(OBJS)
-	$(CC) $(CFLAGS) $(H_FILE) $(OBJS) $(TEST_SRC) -o $@ && ./$@
+scripts: $(NAME)
+	bash $(SCRIPTS)
+
+$(NAME):  $(A_FILES) $(OBJS)
+	$(CC) $(CFLAGS) $(A_FILE) $(OBJS) $(TEST_SRC) -o $@
 	
 clean:
 	rm -f $(NAME)
@@ -39,4 +43,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re scripts
