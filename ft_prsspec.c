@@ -10,18 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_prsspec(va_list _valist)
 {
-	int	length;
-	char *fstr;
+	int		length;
+	char	*fstr;
 
-	fstr = (char *)va_arg( _valist, char *);
-	if (*fstr)
+	fstr = va_arg(_valist, char *);
+	if (fstr == NULL)
 	{
-		length = ft_strlen( fstr);
-		write (1, fstr, length + 1);
+		write(1, "(null)", 6);
+		return (6);
+	}
+	else
+	{
+		length = ft_strlen(fstr);
+		write (1, fstr, length);
 		return (length);
 	}
 	return (0);

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prdspec.c                                       :+:      :+:    :+:   */
+/*   ft_pruspec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 12:22:40 by djacobs           #+#    #+#             */
-/*   Updated: 2022/12/19 20:28:43 by djacobs          ###   ########.fr       */
+/*   Created: 2022/12/19 18:25:49 by djacobs           #+#    #+#             */
+/*   Updated: 2022/12/19 20:35:52 by djacobs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static unsigned int	value_length(long int value)
+static unsigned int	value_length(unsigned int value)
 {
-	int	length;
+	unsigned int	length;
 
 	length = 0;
-	if (value <= 0)
+	if (value == 0)
 		length++;
 	while (value)
 	{
@@ -27,20 +27,18 @@ static unsigned int	value_length(long int value)
 	return (length);
 }
 
-unsigned int	ft_prdspec(va_list _valist)
+unsigned int	ft_pruspec(va_list _valist)
 {
 	unsigned int	length;
-	long int		value;
-	char			*valstr;
 	unsigned int	retlength;
+	char			*valstr;
+	unsigned int	value;
 
-	value = va_arg(_valist, int);
+	value = va_arg(_valist, unsigned int);
 	length = value_length(value);
 	valstr = (char *)ft_calloc(length, sizeof(char));
 	if (!valstr)
 		return (free(valstr), 0);
-	if (value < 0)
-		value *= -1;
 	retlength = length;
 	while (length)
 	{
@@ -48,8 +46,6 @@ unsigned int	ft_prdspec(va_list _valist)
 		if (value)
 			value /= 10;
 	}
-	if (valstr[0] == '0' && retlength > 1)
-		valstr[0] = '-';
 	write (1, valstr, retlength);
 	return (free(valstr), retlength);
 }

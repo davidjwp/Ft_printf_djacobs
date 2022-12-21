@@ -12,7 +12,7 @@
 
 NAME 		= libftprintf.a
 SRCS		= ft_printf.c ft_prpspec.c ft_prsspec.c ft_prxmin.c ft_prxupper.c \
-				convert_to_hex_type.c ft_calloc.c ft_strlen.c ft_prdspec.c
+				convert_to_hex_type.c ft_calloc.c ft_strlen.c ft_prdspec.c ft_pruspec.c
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -27,9 +27,6 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	ar rc $@ $(OBJS) && ranlib $@
 
-test:
-	$(CC) $(CFLAGS) test.c $(NAME) && ./a.out
-
 clean:
 	rm -f $(OBJS)
 
@@ -37,5 +34,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: clean fclean test all 

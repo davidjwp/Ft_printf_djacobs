@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                            :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: djacobs <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBPRINT_H
-# define LIBPRINT_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -20,22 +20,23 @@
 
 typedef struct switch_t
 {
-	unsigned int	type;
-	unsigned int	upper;
-	unsigned int	length;
-	int 			sign_check;
+	unsigned int		type;
+	unsigned int		upper;
+	unsigned int		length;
+	long unsigned int	sign_check;
 }				t_def;
 //my functions
-size_t	ft_strlen(const char *s);
-void	*ft_calloc(size_t nmemb, size_t size);
+size_t			ft_strlen(const char *s);
+void			*ft_calloc(size_t nmemb, size_t size);
 
 //ft_printf functions
-int				ft_printf (const char *format,...);
-int				ft_prsspec( va_list _valist);
-unsigned int	ft_prpspec( va_list _valist);
-unsigned int	ft_prdspec(long int value);
-unsigned int	ft_prxmin( va_list _valist);
-unsigned int	ft_prxupper( va_list _valist);
-unsigned int	convert_to_hex_type(unsigned int value, t_def the_);
+unsigned int	ft_prpspec(va_list _valist);
+unsigned int	ft_prdspec(va_list _valist);
+unsigned int	ft_pruspec(va_list _valist);
+unsigned int	ft_prxmin(va_list _valist);
+unsigned int	ft_prxupper(va_list _valist);
+unsigned int	convert_to_hex_type(long unsigned int value, t_def the_);
+int				ft_printf(const char *format, ...);
+int				ft_prsspec(va_list _valist);
 
 #endif
